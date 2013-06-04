@@ -55,8 +55,6 @@ exports.open = function (windowToOpen, options) {
             $.navGroup.open(windowToOpen, options);                
         }
     } else if (OS_ANDROID) {
-        if ($.windowStack.length === 1)
-            windowToOpen.exitOnClose = true;
         windowToOpen.open(options);
     }
 }
@@ -72,6 +70,11 @@ exports.back = function (options) {
             $.top.close(options);
         } 
         return true;
+    }
+    else {
+    	if (OS_ANDROID) {
+            $.top.close(options);
+        } 
     }
     return false;
 }

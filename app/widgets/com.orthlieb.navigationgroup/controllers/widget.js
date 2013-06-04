@@ -1,3 +1,5 @@
+var args = arguments[0] || {};
+
 // Originally derived from example code from Appcelerator developer relations.
 $.windowStack = [];
 
@@ -46,7 +48,7 @@ exports.open = function (windowToOpen, options) {
                 var containerWindow = Ti.UI.createWindow();
                 containerWindow.add($.navGroup);
                 containerWindow.open({
-                    transition : options.transition
+                    transition : options.transition,
                 });
             }
         } else {
@@ -105,3 +107,7 @@ Object.defineProperty($, "length", {
         return $.windowStack.length; 
     }
 });
+
+if (args.window) {
+    exports.open(args.window);
+}
